@@ -20,7 +20,7 @@
 <main class="container">
 
   <div class="doc-intro">
-    <strong>The short version.</strong> WinNow is a gallery cleaner. The cleaning itself runs entirely on your phone — your photos and videos never leave your device for that. The optional <strong>Vault</strong> is a paid cloud service: items you put in the Vault are uploaded to our Firebase Storage bucket so you can access them across devices. We do not sell your data, do not show ads inside the Vault, and you can export and delete everything at any time.
+    <strong>The short version.</strong> WinNow is a gallery cleaner. The cleaning itself runs entirely on your phone — your photos and videos never leave your device for that. The optional <strong>Vault</strong> is a paid convenience service that syncs items across your devices via Google Cloud. <strong>It is not a backup service. You must keep your own backup of anything irreplaceable.</strong> We do not sell your data, do not show ads inside the Vault, and you can export and delete everything at any time the service is operating.
   </div>
 
   <section class="doc-section">
@@ -39,15 +39,16 @@
     <ul>
       <li><strong>Photos and media</strong> — required so the cleaner can scan your gallery. We never upload your gallery; we only read what we need to show duplicates and clutter.</li>
       <li><strong>Storage</strong> — to delete files you choose to delete and to read folders you choose to scan.</li>
-      <li><strong>Contacts</strong> — only if you turn on the Contacts Backup feature inside the Vault. Contacts are read on demand and uploaded to your encrypted Vault folder.</li>
+      <li><strong>Contacts</strong> — only if you turn on the Contacts Backup feature inside the Vault. Contacts are read on demand and uploaded to your Vault folder.</li>
       <li><strong>Notifications</strong> — to send you alerts you opted into (cleaning reminders, Vault grace-period warnings, important account messages).</li>
       <li><strong>Internet</strong> — only used by the Vault, account sync, push notifications, and pricing/announcement updates. The cleaner itself works offline.</li>
     </ul>
   </section>
 
   <section class="doc-section">
-    <h2>4. The Vault — optional cloud</h2>
+    <h2>4. The Vault — optional cloud convenience</h2>
     <p>The Vault is an opt-in paid feature. When you put a file into the Vault, the file is uploaded to Google Cloud Storage (Firebase Storage) under your account. Vault metadata (file names, sizes, folder structure, your custom PIN settings) is stored in Firestore.</p>
+    <p><strong>The Vault is a convenience service for accessing your important items across multiple devices. It is NOT a guaranteed backup service.</strong> Like every cloud service, the Vault depends on third-party infrastructure (Google Cloud) and can be affected by outages, regional unavailability, account suspension, or events outside our control. <strong>You must keep your own independent backup of anything you cannot afford to lose</strong> — for example, on an external hard drive, on a separate cloud service, or printed for important documents.</p>
     <p><strong>Honest disclosure on encryption.</strong> Vault items are encrypted in transit (TLS) and encrypted at rest by Google Cloud Storage using server-side keys. They are <em>not</em> end-to-end encrypted — meaning that a Google Cloud administrator with sufficient access could in theory read them, the same way they could read any file on Google Drive or Google Photos. We do not access your Vault contents. Your in-app PIN locks the Vault on your device but does not encrypt the cloud copy.</p>
     <p>If you require true end-to-end encryption, do not store sensitive material such as passwords, private keys, or government documents in the Vault.</p>
   </section>
@@ -64,15 +65,16 @@
   </section>
 
   <section class="doc-section">
-    <h2>6. Your rights — always-available export</h2>
-    <p>You can, at any time and from inside the app:</p>
+    <h2>6. Your rights — export at any time</h2>
+    <p>While the service is operating, you can, at any time and from inside the app:</p>
     <ul>
       <li>Export every item in your Vault back to your device gallery, in original quality.</li>
       <li>Delete individual Vault items, entire folders, or your whole Vault.</li>
       <li>Delete your account, which permanently removes your Vault, your subscription record, and your profile from our systems.</li>
       <li>Request a machine-readable copy of all data we hold about you by emailing <a href="mailto:ayn.developer@gmail.com">ayn.developer@gmail.com</a>. We respond within 30 days.</li>
     </ul>
-    <p>Account deletion is final. We do not keep a hidden backup after you ask us to delete; the only retention is the standard 60-day grace bin described in section 8.</p>
+    <p>Account deletion is final. We do not keep a hidden backup after you ask us to delete; the only retention is the standard 60-day grace bin described in section 8 and minimal billing records that tax law requires us to keep.</p>
+    <p>Because we strongly encourage you to maintain your own backup, exporting from the Vault to your device should be a regular habit, not a one-time event.</p>
   </section>
 
   <section class="doc-section">
@@ -85,31 +87,39 @@
       <li><strong>Google Play Billing</strong> — to process subscriptions; we receive only the purchase token and product ID, never your card details.</li>
       <li><strong>Google AdMob</strong> — non-personalised ads shown in the free cleaner only.</li>
     </ul>
-    <p>All listed services are provided by Google LLC. Their handling of data is governed by Google's own privacy terms.</p>
+    <p>All listed services are provided by Google LLC. Their handling of data is governed by Google's own privacy terms. We are not responsible for outages, data loss, or policy changes on their side.</p>
   </section>
 
   <section class="doc-section">
-    <h2>8. Data retention</h2>
+    <h2>8. Data retention — best-effort, not guaranteed</h2>
+    <p>The intentions below describe how we operate the service in normal conditions. They are <strong>not guarantees</strong>. They can be affected by Google Cloud outages, account suspensions, regulatory action, or discontinuation of the app (see section 9).</p>
     <ul>
-      <li><strong>Active Vault items</strong> — kept as long as your subscription is active.</li>
-      <li><strong>Grace period after subscription ends or downgrade</strong> — 60 days. During grace your Vault is read-only; you can export but not add new items. After 60 days, items are moved to long-term cold storage (Google Cloud Coldline). They remain recoverable on request indefinitely; we never auto-delete a paid user's data.</li>
-      <li><strong>Free tier with no activity</strong> — accounts that never had a subscription and have been inactive for 90 days may have their Vault frozen. Items are preserved; sign-in restores access.</li>
-      <li><strong>After account deletion</strong> — all your data is removed within 30 days, except minimal billing records we are legally required to keep (tax law).</li>
+      <li><strong>Active Vault items</strong> — kept as long as your subscription is active and the service is operating.</li>
+      <li><strong>Grace period after subscription ends or downgrade</strong> — we aim to provide 60 days of read-only access during which you can export. New uploads are blocked. After 60 days, items are moved to long-term cold storage on a commercially reasonable best-effort basis.</li>
+      <li><strong>Free tier with no activity</strong> — accounts that never had a subscription and have been inactive for 90 days may have their Vault frozen. Items are preserved on a best-effort basis; sign-in restores access.</li>
+      <li><strong>After account deletion</strong> — all your data is removed within 30 days, except minimal billing records we are legally required to keep.</li>
     </ul>
+    <p>Because retention depends on third parties and on the continued operation of the app, <strong>you must keep your own backup of anything irreplaceable</strong>. The Vault is convenience storage, not a vault in the literal sense.</p>
   </section>
 
   <section class="doc-section">
-    <h2>9. Children</h2>
+    <h2>9. Service availability and discontinuation</h2>
+    <p>WinNow is provided as a convenience service. We do not guarantee continuous availability, zero downtime, or zero data loss. Outages, bugs, account issues, and regional restrictions can occur.</p>
+    <p>We reserve the right to modify, suspend, or discontinue any part of the service — including the Vault — at any time. If we decide to discontinue the Vault entirely, we will use commercially reasonable efforts to give at least <strong>60 days' notice</strong> in-app and by email so you can export your data, and to refund the unused portion of any active paid period on a pro-rata basis. We cannot promise this notice in extraordinary circumstances such as bankruptcy, regulatory action, or force majeure.</p>
+  </section>
+
+  <section class="doc-section">
+    <h2>10. Children</h2>
     <p>WinNow is not directed at children under 13 (or the equivalent minimum age in your country). We do not knowingly collect data from children. If you believe a child has created an account, contact us and we will delete it.</p>
   </section>
 
   <section class="doc-section">
-    <h2>10. Changes to this policy</h2>
-    <p>If we make a material change, we will notify you in-app at least 30 days before it takes effect. The "last updated" date at the top of this page always reflects the current version. Older versions are kept on this site for transparency.</p>
+    <h2>11. Changes to this policy</h2>
+    <p>If we make a material change, we will notify you in-app at least 30 days before it takes effect. The "last updated" date at the top of this page always reflects the current version. Continued use of the app after a change means you accept the updated policy.</p>
   </section>
 
   <section class="doc-section">
-    <h2>11. Governing law and your contact</h2>
+    <h2>12. Governing law and your contact</h2>
     <p>This policy is governed by the laws of the Kingdom of Saudi Arabia, including the Personal Data Protection Law (PDPL). If you are in the European Economic Area or the United Kingdom, you also have the rights granted by the GDPR / UK GDPR — including the right to lodge a complaint with your national data protection authority.</p>
     <p>For any privacy question, data export request, or complaint, write to <a href="mailto:ayn.developer@gmail.com">ayn.developer@gmail.com</a>. We aim to reply within 7 days and resolve within 30.</p>
   </section>
