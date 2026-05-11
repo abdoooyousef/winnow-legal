@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account &amp; Data Deletion — WinNow</title>
+<meta name="description" content="How to delete your WinNow account and what happens to your data — in-app, by email, or both.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="container">
+    <a class="doc-back" href="index.html">← Back to legal</a>
+    <h1 class="doc-title">Account &amp; Data Deletion</h1>
+    <p class="doc-meta">Effective date: 2 May 2026 · Last updated: 2 May 2026</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="doc-intro">
+    <strong>The short version.</strong> You can delete your WinNow account and all associated data at any time from inside the app, under <strong>Settings → Delete account</strong>. Everything tied to your account — Vault files, subscription record, profile, FCM push token, audit logs — is removed within 30 days. If you cannot access the app for any reason, email <a href="mailto:ayn.developer@gmail.com">ayn.developer@gmail.com</a> from the address tied to your account and we will process the deletion manually within 7 days.
+  </div>
+
+  <section class="doc-section">
+    <h2>1. Who this page is for</h2>
+    <p>This page exists so that any user — current, former, or someone who never installed the app — can find the deletion process without needing the app open, and so that the Google Play Data Safety form has a public URL to link to. It is published by Abdo Yousef, the independent developer of WinNow. Contact: <a href="mailto:ayn.developer@gmail.com">ayn.developer@gmail.com</a>.</p>
+  </section>
+
+  <section class="doc-section">
+    <h2>2. Delete from inside the app (recommended)</h2>
+    <ol>
+      <li>Open <strong>WinNow</strong> on your Android device.</li>
+      <li>Tap the <strong>Settings</strong> tab (gear icon, bottom-right).</li>
+      <li>Scroll to the <strong>Account</strong> section.</li>
+      <li>Tap <strong>Delete account</strong>.</li>
+      <li>Read the consequences screen. To continue you must type <strong>DELETE</strong> into the confirmation box — this is intentional, to prevent accidental taps.</li>
+      <li>Tap <strong>Permanently delete</strong>. The button only enables after the confirmation text matches.</li>
+    </ol>
+    <p>The request is processed by a server-side function. When it completes, you are signed out automatically and your account no longer exists. If you reinstall the app later, you start as a brand-new user with no history.</p>
+  </section>
+
+  <section class="doc-section">
+    <h2>3. Delete by email (if you cannot use the app)</h2>
+    <p>If you uninstalled the app, lost the device, or cannot reach the in-app flow for any other reason:</p>
+    <ol>
+      <li>Send an email to <a href="mailto:ayn.developer@gmail.com">ayn.developer@gmail.com</a>.</li>
+      <li>Send it from <strong>the same email address you used to sign in to WinNow</strong> (your Google account email). Using a different address makes it impossible for us to verify you own the account, and the request will be refused.</li>
+      <li>Subject line: <code>WinNow account deletion request</code>.</li>
+      <li>Body: tell us briefly that you want your account deleted. No further details are needed.</li>
+    </ol>
+    <p>We will reply within 48 hours to confirm we received the request and again within 7 days to confirm the deletion completed.</p>
+  </section>
+
+  <section class="doc-section">
+    <h2>4. What is deleted</h2>
+    <ul>
+      <li>Your Firebase Authentication user record (the underlying identity).</li>
+      <li>Your profile document under <code>users/{uid}</code> in Firestore — email, locale, country, subscription tier, storage quota, FCM push token.</li>
+      <li>Every file you stored in the Vault (under <code>vaults/{uid}/...</code> in Cloud Storage), including thumbnails.</li>
+      <li>Your Vault metadata, custom folders, and saved cards/IDs.</li>
+      <li>Your subscription history, referral progress, reward unlocks, and notification preferences.</li>
+      <li>Audit-log entries that identify you personally are scrubbed or removed.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section">
+    <h2>5. What is kept (and why)</h2>
+    <p>A few records survive deletion because the law requires us to keep them, or because they identify financial transactions rather than you as a person:</p>
+    <ul>
+      <li><strong>Billing records that tax authorities require us to keep.</strong> These are minimal — a transaction reference, the amount, the currency, the date. They contain no Vault content and no personal identifiers beyond what Google Play already shared with us at the time of purchase.</li>
+      <li><strong>Anonymous aggregate statistics.</strong> Counts like "how many users tried Plus this month" do not contain anything that points back to you and are retained for product analytics.</li>
+    </ul>
+    <p>Nothing in either category can be used to log back into your account or restore your Vault.</p>
+  </section>
+
+  <section class="doc-section">
+    <h2>6. Timeline</h2>
+    <ul>
+      <li><strong>In-app deletion</strong> — completes within seconds; you are signed out before the screen closes. The actual data wipe (Cloud Storage objects + Firestore documents) finishes in the background within minutes.</li>
+      <li><strong>Email deletion</strong> — within 7 days of receiving a verified request.</li>
+      <li><strong>Backups</strong> — automated backup snapshots of our Firestore database may still contain your data for up to 30 days after the deletion, after which they expire. They are not directly accessible to anyone, and we do not restore them on user request.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section">
+    <h2>7. Before you delete — export anything you want to keep</h2>
+    <p>Account deletion is <strong>final</strong>. We do not keep a hidden backup, and we cannot recover your Vault after the wipe completes.</p>
+    <p>If your Vault has anything irreplaceable, export it first:</p>
+    <ol>
+      <li>Open WinNow → Vault.</li>
+      <li>For each folder you want to keep, tap the folder, then the three-dot menu → <strong>Export to device</strong>.</li>
+      <li>Files are written back into your phone's gallery / Downloads folder in original quality.</li>
+      <li>From there, copy them to your own backup (external drive, separate cloud service, etc.).</li>
+    </ol>
+    <p>We strongly recommend doing this on a routine basis, not only before deletion. The Vault is a convenience service, not a guaranteed backup.</p>
+  </section>
+
+  <section class="doc-section">
+    <h2>8. Cancelling a subscription is different</h2>
+    <p>Deleting your account is <em>not</em> the same as cancelling your subscription. Subscriptions live in your Google Play account, not in WinNow's database, and Google does not give us the ability to cancel them on your behalf.</p>
+    <p>If you only want to stop being billed but keep your account and Vault:</p>
+    <ol>
+      <li>Open <strong>Google Play Store</strong> → tap your profile picture → <strong>Payments &amp; subscriptions</strong> → <strong>Subscriptions</strong>.</li>
+      <li>Find <strong>WinNow</strong> in the list.</li>
+      <li>Tap it and choose <strong>Cancel subscription</strong>.</li>
+    </ol>
+    <p>You keep paid access until the end of the period you already paid for, then drop to the free tier. Your Vault enters a 60-day grace window in which you can still export everything.</p>
+  </section>
+
+  <section class="doc-section">
+    <h2>9. Questions, complaints, escalation</h2>
+    <p>If the in-app or email flow did not work as described, or if you believe data was not deleted, email <a href="mailto:ayn.developer@gmail.com">ayn.developer@gmail.com</a> with details. We aim to acknowledge within 7 days and resolve within 30.</p>
+    <p>You also have the right to lodge a complaint with your national data-protection authority (the SDAIA in Saudi Arabia, your local data-protection regulator in the EU/UK, etc.). See the <a href="privacy.html">Privacy Policy</a> for more on your rights.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>WinNow · Built with care by Abdo Yousef · 2026</p>
+    <p class="links">
+      <a href="index.html">Home</a> ·
+      <a href="privacy.html">Privacy</a> ·
+      <a href="terms.html">Terms</a> ·
+      <a href="https://github.com/abdoooyousef/winnow">GitHub</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
